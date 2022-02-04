@@ -3,7 +3,7 @@ package whop
 import (
 	"context"
 
-	. "github.com/whopio/go-whop-sdk/sdk/whopclient"
+	. "github.com/whopio/whop-go-sdk/whopclient"
 )
 
 type Whop struct {
