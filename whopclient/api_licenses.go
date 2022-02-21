@@ -32,14 +32,8 @@ type ApiBanLicenseByKeyRequest struct {
 	ctx _context.Context
 	ApiService *LicensesApiService
 	key string
-	banLicenseByKeyRequest *BanLicenseByKeyRequest
 }
 
-// Details of license key metadata.
-func (r ApiBanLicenseByKeyRequest) BanLicenseByKeyRequest(banLicenseByKeyRequest BanLicenseByKeyRequest) ApiBanLicenseByKeyRequest {
-	r.banLicenseByKeyRequest = &banLicenseByKeyRequest
-	return r
-}
 
 func (r ApiBanLicenseByKeyRequest) Execute() (BanLicenseByKeyResponse, *_nethttp.Response, error) {
 	return r.ApiService.BanLicenseByKeyExecute(r)
@@ -83,7 +77,7 @@ func (a *LicensesApiService) BanLicenseByKeyExecute(r ApiBanLicenseByKeyRequest)
 	localVarFormParams := _neturl.Values{}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -99,8 +93,6 @@ func (a *LicensesApiService) BanLicenseByKeyExecute(r ApiBanLicenseByKeyRequest)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	// body params
-	localVarPostBody = r.banLicenseByKeyRequest
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -211,6 +203,20 @@ func (a *LicensesApiService) GetLicenseByKeyExecute(r ApiGetLicenseByKeyRequest)
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["ClientID"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["Authorization"] = key
+			}
+		}
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -405,14 +411,8 @@ type ApiResetLicenseByKeyRequest struct {
 	ctx _context.Context
 	ApiService *LicensesApiService
 	key string
-	resetLicenseByKeyRequest *ResetLicenseByKeyRequest
 }
 
-// Details of license key metadata.
-func (r ApiResetLicenseByKeyRequest) ResetLicenseByKeyRequest(resetLicenseByKeyRequest ResetLicenseByKeyRequest) ApiResetLicenseByKeyRequest {
-	r.resetLicenseByKeyRequest = &resetLicenseByKeyRequest
-	return r
-}
 
 func (r ApiResetLicenseByKeyRequest) Execute() (ResetLicenseByKeyResponse, *_nethttp.Response, error) {
 	return r.ApiService.ResetLicenseByKeyExecute(r)
@@ -456,7 +456,7 @@ func (a *LicensesApiService) ResetLicenseByKeyExecute(r ApiResetLicenseByKeyRequ
 	localVarFormParams := _neturl.Values{}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -472,8 +472,20 @@ func (a *LicensesApiService) ResetLicenseByKeyExecute(r ApiResetLicenseByKeyRequ
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	// body params
-	localVarPostBody = r.resetLicenseByKeyRequest
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["ClientID"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["Authorization"] = key
+			}
+		}
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -593,6 +605,20 @@ func (a *LicensesApiService) UpdateLicenseByKeyExecute(r ApiUpdateLicenseByKeyRe
 	}
 	// body params
 	localVarPostBody = r.updateLicenseByKeyRequest
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["ClientID"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["Authorization"] = key
+			}
+		}
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -712,6 +738,20 @@ func (a *LicensesApiService) ValidateLicenseByKeyExecute(r ApiValidateLicenseByK
 	}
 	// body params
 	localVarPostBody = r.validateLicenseByKeyRequest
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["ClientID"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["Authorization"] = key
+			}
+		}
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

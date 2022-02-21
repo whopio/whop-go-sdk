@@ -17,7 +17,7 @@ import (
 
 // UpdateLicenseByKeyRequest struct for UpdateLicenseByKeyRequest
 type UpdateLicenseByKeyRequest struct {
-	Metadata *UpdateLicenseByKeyRequestMetadata `json:"metadata,omitempty"`
+	Metadata *map[string]interface{} `json:"metadata,omitempty"`
 }
 
 // NewUpdateLicenseByKeyRequest instantiates a new UpdateLicenseByKeyRequest object
@@ -38,9 +38,9 @@ func NewUpdateLicenseByKeyRequestWithDefaults() *UpdateLicenseByKeyRequest {
 }
 
 // GetMetadata returns the Metadata field value if set, zero value otherwise.
-func (o *UpdateLicenseByKeyRequest) GetMetadata() UpdateLicenseByKeyRequestMetadata {
+func (o *UpdateLicenseByKeyRequest) GetMetadata() map[string]interface{} {
 	if o == nil || o.Metadata == nil {
-		var ret UpdateLicenseByKeyRequestMetadata
+		var ret map[string]interface{}
 		return ret
 	}
 	return *o.Metadata
@@ -48,7 +48,7 @@ func (o *UpdateLicenseByKeyRequest) GetMetadata() UpdateLicenseByKeyRequestMetad
 
 // GetMetadataOk returns a tuple with the Metadata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateLicenseByKeyRequest) GetMetadataOk() (*UpdateLicenseByKeyRequestMetadata, bool) {
+func (o *UpdateLicenseByKeyRequest) GetMetadataOk() (*map[string]interface{}, bool) {
 	if o == nil || o.Metadata == nil {
 		return nil, false
 	}
@@ -64,8 +64,8 @@ func (o *UpdateLicenseByKeyRequest) HasMetadata() bool {
 	return false
 }
 
-// SetMetadata gets a reference to the given UpdateLicenseByKeyRequestMetadata and assigns it to the Metadata field.
-func (o *UpdateLicenseByKeyRequest) SetMetadata(v UpdateLicenseByKeyRequestMetadata) {
+// SetMetadata gets a reference to the given map[string]interface{} and assigns it to the Metadata field.
+func (o *UpdateLicenseByKeyRequest) SetMetadata(v map[string]interface{}) {
 	o.Metadata = &v
 }
 

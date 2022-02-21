@@ -10,9 +10,18 @@ type Whop struct {
 	client *APIClient
 }
 
-func NewWhop(bearer string) Whop {
+type Config struct {
+	Bearer   string
+	ClientID string
+}
+
+func NewWhop(config Config) Whop {
 	cfg := NewConfiguration()
-	cfg.AddDefaultHeader("Authorization", "Bearer "+bearer)
+	if config.Bearer != "" {
+		cfg.AddDefaultHeader("Authorization", "Bearer "+config.Bearer)
+	} else if config.ClientID != "" {
+		cfg.AddDefaultHeader("Authorization", config.ClientID)
+	}
 	client := NewAPIClient(cfg)
 	return Whop{
 		client: client,
@@ -89,9 +98,8 @@ func (w Whop) UpdateLicenseByKey(ctx context.Context, key string, body UpdateLic
 }
 
 // Reset License
-func (w Whop) ResetLicenseByKey(ctx context.Context, key string, body ResetLicenseByKeyRequest) (ResetLicenseByKeyResponse, error) {
+func (w Whop) ResetLicenseByKey(ctx context.Context, key string) (ResetLicenseByKeyResponse, error) {
 	req := w.client.LicensesApi.ResetLicenseByKey(ctx, key)
-	req = req.ResetLicenseByKeyRequest(body)
 	resp, _, err := req.Execute()
 	return resp, err
 }
@@ -123,9 +131,8 @@ func (w Whop) GetLicenseByKey(ctx context.Context, key string) (GetLicenseByKeyR
 }
 
 // Ban License
-func (w Whop) BanLicenseByKey(ctx context.Context, key string, body BanLicenseByKeyRequest) (BanLicenseByKeyResponse, error) {
+func (w Whop) BanLicenseByKey(ctx context.Context, key string) (BanLicenseByKeyResponse, error) {
 	req := w.client.LicensesApi.BanLicenseByKey(ctx, key)
-	req = req.BanLicenseByKeyRequest(body)
 	resp, _, err := req.Execute()
 	return resp, err
 }

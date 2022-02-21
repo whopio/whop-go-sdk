@@ -27,7 +27,7 @@ type GetLicenseByKeyResponse struct {
 	SubscriptionStatus NullableString `json:"subscription_status,omitempty"`
 	Quantity NullableInt64 `json:"quantity,omitempty"`
 	Banned NullableBool `json:"banned,omitempty"`
-	Metadata NullableMetadata `json:"metadata,omitempty"`
+	Metadata *map[string]interface{} `json:"metadata,omitempty"`
 	NextRenewalDate NullableString `json:"next_renewal_date,omitempty"`
 	RenewalPeriod NullableInt64 `json:"renewal_period,omitempty"`
 	CreatedAt NullableString `json:"created_at,omitempty"`
@@ -474,46 +474,36 @@ func (o *GetLicenseByKeyResponse) UnsetBanned() {
 	o.Banned.Unset()
 }
 
-// GetMetadata returns the Metadata field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetLicenseByKeyResponse) GetMetadata() Metadata {
-	if o == nil || o.Metadata.Get() == nil {
-		var ret Metadata
+// GetMetadata returns the Metadata field value if set, zero value otherwise.
+func (o *GetLicenseByKeyResponse) GetMetadata() map[string]interface{} {
+	if o == nil || o.Metadata == nil {
+		var ret map[string]interface{}
 		return ret
 	}
-	return *o.Metadata.Get()
+	return *o.Metadata
 }
 
 // GetMetadataOk returns a tuple with the Metadata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetLicenseByKeyResponse) GetMetadataOk() (*Metadata, bool) {
-	if o == nil  {
+func (o *GetLicenseByKeyResponse) GetMetadataOk() (*map[string]interface{}, bool) {
+	if o == nil || o.Metadata == nil {
 		return nil, false
 	}
-	return o.Metadata.Get(), o.Metadata.IsSet()
+	return o.Metadata, true
 }
 
 // HasMetadata returns a boolean if a field has been set.
 func (o *GetLicenseByKeyResponse) HasMetadata() bool {
-	if o != nil && o.Metadata.IsSet() {
+	if o != nil && o.Metadata != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetMetadata gets a reference to the given NullableMetadata and assigns it to the Metadata field.
-func (o *GetLicenseByKeyResponse) SetMetadata(v Metadata) {
-	o.Metadata.Set(&v)
-}
-// SetMetadataNil sets the value for Metadata to be an explicit nil
-func (o *GetLicenseByKeyResponse) SetMetadataNil() {
-	o.Metadata.Set(nil)
-}
-
-// UnsetMetadata ensures that no value is present for Metadata, not even an explicit nil
-func (o *GetLicenseByKeyResponse) UnsetMetadata() {
-	o.Metadata.Unset()
+// SetMetadata gets a reference to the given map[string]interface{} and assigns it to the Metadata field.
+func (o *GetLicenseByKeyResponse) SetMetadata(v map[string]interface{}) {
+	o.Metadata = &v
 }
 
 // GetNextRenewalDate returns the NextRenewalDate field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -833,8 +823,8 @@ func (o GetLicenseByKeyResponse) MarshalJSON() ([]byte, error) {
 	if o.Banned.IsSet() {
 		toSerialize["banned"] = o.Banned.Get()
 	}
-	if o.Metadata.IsSet() {
-		toSerialize["metadata"] = o.Metadata.Get()
+	if o.Metadata != nil {
+		toSerialize["metadata"] = o.Metadata
 	}
 	if o.NextRenewalDate.IsSet() {
 		toSerialize["next_renewal_date"] = o.NextRenewalDate.Get()

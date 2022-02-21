@@ -19,8 +19,8 @@ import (
 type LicensePlan struct {
 	Id NullableInt64 `json:"id,omitempty"`
 	Title NullableString `json:"title,omitempty"`
-	InitialPrice NullableInt64 `json:"initial_price,omitempty"`
-	RenewalPrice NullableInt64 `json:"renewal_price,omitempty"`
+	InitialPrice NullableFloat32 `json:"initial_price,omitempty"`
+	RenewalPrice NullableFloat32 `json:"renewal_price,omitempty"`
 	BillingPeriod NullableInt64 `json:"billing_period,omitempty"`
 	LicenseType NullableString `json:"license_type,omitempty"`
 }
@@ -127,9 +127,9 @@ func (o *LicensePlan) UnsetTitle() {
 }
 
 // GetInitialPrice returns the InitialPrice field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *LicensePlan) GetInitialPrice() int64 {
+func (o *LicensePlan) GetInitialPrice() float32 {
 	if o == nil || o.InitialPrice.Get() == nil {
-		var ret int64
+		var ret float32
 		return ret
 	}
 	return *o.InitialPrice.Get()
@@ -138,7 +138,7 @@ func (o *LicensePlan) GetInitialPrice() int64 {
 // GetInitialPriceOk returns a tuple with the InitialPrice field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *LicensePlan) GetInitialPriceOk() (*int64, bool) {
+func (o *LicensePlan) GetInitialPriceOk() (*float32, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -154,8 +154,8 @@ func (o *LicensePlan) HasInitialPrice() bool {
 	return false
 }
 
-// SetInitialPrice gets a reference to the given NullableInt64 and assigns it to the InitialPrice field.
-func (o *LicensePlan) SetInitialPrice(v int64) {
+// SetInitialPrice gets a reference to the given NullableFloat32 and assigns it to the InitialPrice field.
+func (o *LicensePlan) SetInitialPrice(v float32) {
 	o.InitialPrice.Set(&v)
 }
 // SetInitialPriceNil sets the value for InitialPrice to be an explicit nil
@@ -169,9 +169,9 @@ func (o *LicensePlan) UnsetInitialPrice() {
 }
 
 // GetRenewalPrice returns the RenewalPrice field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *LicensePlan) GetRenewalPrice() int64 {
+func (o *LicensePlan) GetRenewalPrice() float32 {
 	if o == nil || o.RenewalPrice.Get() == nil {
-		var ret int64
+		var ret float32
 		return ret
 	}
 	return *o.RenewalPrice.Get()
@@ -180,7 +180,7 @@ func (o *LicensePlan) GetRenewalPrice() int64 {
 // GetRenewalPriceOk returns a tuple with the RenewalPrice field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *LicensePlan) GetRenewalPriceOk() (*int64, bool) {
+func (o *LicensePlan) GetRenewalPriceOk() (*float32, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -196,8 +196,8 @@ func (o *LicensePlan) HasRenewalPrice() bool {
 	return false
 }
 
-// SetRenewalPrice gets a reference to the given NullableInt64 and assigns it to the RenewalPrice field.
-func (o *LicensePlan) SetRenewalPrice(v int64) {
+// SetRenewalPrice gets a reference to the given NullableFloat32 and assigns it to the RenewalPrice field.
+func (o *LicensePlan) SetRenewalPrice(v float32) {
 	o.RenewalPrice.Set(&v)
 }
 // SetRenewalPriceNil sets the value for RenewalPrice to be an explicit nil
