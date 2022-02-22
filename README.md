@@ -19,6 +19,7 @@ import (
 func main() {
     config := whop.Config{
         Bearer: "<Bearer Token>",
+	// ClientID: "<client ID">,
     }
 	client := whop.NewWhop(config)
 	ctx := context.Background()
