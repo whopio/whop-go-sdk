@@ -22,7 +22,7 @@ type Link struct {
 	Password NullableString `json:"password,omitempty"`
 	Stock NullableInt64 `json:"stock,omitempty"`
 	CreatedAt NullableString `json:"created_at,omitempty"`
-	DiscordIds []*string `json:"discord_ids,omitempty"`
+	DiscordIds NullableString `json:"discord_ids,omitempty"`
 	Hidden NullableBool `json:"hidden,omitempty"`
 }
 
@@ -254,36 +254,45 @@ func (o *Link) UnsetCreatedAt() {
 }
 
 // GetDiscordIds returns the DiscordIds field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *Link) GetDiscordIds() []*string {
-	if o == nil  {
-		var ret []*string
+func (o *Link) GetDiscordIds() string {
+	if o == nil || o.DiscordIds.Get() == nil {
+		var ret string
 		return ret
 	}
-	return o.DiscordIds
+	return *o.DiscordIds.Get()
 }
 
 // GetDiscordIdsOk returns a tuple with the DiscordIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *Link) GetDiscordIdsOk() (*[]*string, bool) {
-	if o == nil || o.DiscordIds == nil {
+func (o *Link) GetDiscordIdsOk() (*string, bool) {
+	if o == nil  {
 		return nil, false
 	}
-	return &o.DiscordIds, true
+	return o.DiscordIds.Get(), o.DiscordIds.IsSet()
 }
 
 // HasDiscordIds returns a boolean if a field has been set.
 func (o *Link) HasDiscordIds() bool {
-	if o != nil && o.DiscordIds != nil {
+	if o != nil && o.DiscordIds.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetDiscordIds gets a reference to the given []*string and assigns it to the DiscordIds field.
-func (o *Link) SetDiscordIds(v []*string) {
-	o.DiscordIds = v
+// SetDiscordIds gets a reference to the given NullableString and assigns it to the DiscordIds field.
+func (o *Link) SetDiscordIds(v string) {
+	o.DiscordIds.Set(&v)
+}
+// SetDiscordIdsNil sets the value for DiscordIds to be an explicit nil
+func (o *Link) SetDiscordIdsNil() {
+	o.DiscordIds.Set(nil)
+}
+
+// UnsetDiscordIds ensures that no value is present for DiscordIds, not even an explicit nil
+func (o *Link) UnsetDiscordIds() {
+	o.DiscordIds.Unset()
 }
 
 // GetHidden returns the Hidden field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -345,8 +354,8 @@ func (o Link) MarshalJSON() ([]byte, error) {
 	if o.CreatedAt.IsSet() {
 		toSerialize["created_at"] = o.CreatedAt.Get()
 	}
-	if o.DiscordIds != nil {
-		toSerialize["discord_ids"] = o.DiscordIds
+	if o.DiscordIds.IsSet() {
+		toSerialize["discord_ids"] = o.DiscordIds.Get()
 	}
 	if o.Hidden.IsSet() {
 		toSerialize["hidden"] = o.Hidden.Get()
